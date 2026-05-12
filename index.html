@@ -15,8 +15,9 @@
             src: url('fonts/PARSELTO.TTF') format('truetype');
         }
 
-        body {
-            background: #050308;
+        body[data-bs-theme="light"] {
+            background: white;
+            color: black;
         }
 
         /* nav */
@@ -700,7 +701,7 @@
     </style>
 </head>
 
-<body>
+<body data-bs-theme="dark" id="body">
 
     <!-- nav -->
     <nav class="navi">
@@ -712,6 +713,9 @@
                     <li><a href="#spells">Spells</a></li>
                     <li><a href="#books">Books</a></li>
                 </ul>
+                <button id="mode-btn" class="theme-btn" onclick="switchTheme()">
+                    Light Mode
+                </button>
             </div>
         </div>
     </nav>
@@ -842,7 +846,30 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
+
+
     <script>
+        // theme
+        let mode = "dark";
+
+        const body = document.getElementById("body");
+        const modeBtn = document.getElementById("mode-btn");
+
+
+        function switchTheme() {
+            if (mode == "dark") {
+                mode = "light";
+                modeBtn.innerHTML = "Dark Mode";
+            } else {
+                mode = "dark";
+                modeBtn.innerHTML = "Light Mode";
+            }
+
+            body.setAttribute("data-bs-theme", mode)
+
+        }
+
+
         // characters
         const API_URL = "https://hp-api.onrender.com/api/characters";
 
